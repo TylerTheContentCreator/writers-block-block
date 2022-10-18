@@ -1,0 +1,26 @@
+@import '~bootstrap/scss/bootstrap.scss';
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+  font-family: 'Courier Prime';
+}
+.form-control:focus {
+  border-color: $dark !important;
+  border-width: 0px !important;
+  transition: none;
+}
+
+.form-control:active {
+  border-color: $dark !important;
+  border-width: 0px !important;
+  transition: none;
+}
+
+.icon-label {
+  display: inline-flex;
+  align-items: center;
+}
+
+:root {
+  --animate-delay: 0.2s;
+}
