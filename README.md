@@ -1,7 +1,7 @@
 
 # Writer's Block Block (WB<sup>2</sup>)
 A free, open source tool to block writers block.
-If you would like to play with the tool, try out the live demo [here](https://google.com).
+If you would like to play with the tool, try out the live demo [here](https://tylerthecontentcreator.github.io/writers-block-block/).
 
 ![screen-gif](./demo.gif)
 
