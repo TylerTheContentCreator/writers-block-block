@@ -108,7 +108,7 @@ function App() {
               setHeader('Word Deleted')
               setBody('Keep Typing!')
               setShowToast(true)
-              setTxt(txt => txtInput.current.value.slice(firstWord + 1,  txtInput.current.value.length))
+              setTxt(txt => txtInput.current.value.slice(firstWord + 1, txtInput.current.value.length))
 
               return 10
 
@@ -127,6 +127,9 @@ function App() {
       // 👇️ your logic here
       const firstWord = txt.indexOf(' ')
       console.log(firstWord)
+      setHeader('Word Deleted')
+      setBody('You hit Backspace and we took a word as payment!')
+      setShowToast(true)
       setTxt(txt => txt.slice(firstWord + 1, txt.length))
     }
 
