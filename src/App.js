@@ -92,7 +92,7 @@ function App() {
           }
           if (t - 1 === 0) {
             clearEverything()
-            
+
             ReactGA.event({
               category: 'User-Action',
               action: 'Session Ended'
@@ -122,6 +122,8 @@ function App() {
                 category: 'User-Action',
                 action: 'Back Space Hit'
               });
+              setHeader('Keep Typing')
+              setBody('We took a word as payment for not typing')
               setShowToast(true)
               setTxt(txt => txtInput.current.value.slice(firstWord + 1, txtInput.current.value.length))
 
