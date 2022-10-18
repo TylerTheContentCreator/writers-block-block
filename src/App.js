@@ -258,6 +258,7 @@ function App() {
 
       </Modal>
 
+
       <ToastContainer className="p-3" position={'bottom-end'} >
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide>
           <Toast.Header closeButton={false} >
@@ -266,6 +267,9 @@ function App() {
           <Toast.Body>{body}</Toast.Body>
         </Toast>
       </ToastContainer>
+
+      <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="tylerthecc" data-description="Support me on Buy me a coffee!" data-message="Love this free tool? Share some love" data-color="#ff813f" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
+
     </Container>
 
   );
