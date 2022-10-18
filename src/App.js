@@ -6,6 +6,7 @@ import { useRef, useState, useEffect, } from 'react';
 import { Container, Row, Col, Form, Button, Modal, Toast, ToastContainer } from 'react-bootstrap';
 import Confetti from 'react-confetti'
 import { FaDownload, FaCopy, FaFrown } from 'react-icons/fa'
+import ReactGA from 'react-ga';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
   const [savedTxt, setSavedTxt] = useState('')
   const [disableInput, setDisableInput] = useState(false)
   const [showFail, setShowFail] = useState(false)
+  const [started, setStarted] = useState(false)
 
   const audio = new Audio(require('./ding.wav'))
 
@@ -34,6 +36,7 @@ function App() {
   var fiveInterval = null;
 
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
 
   }, [])
 
@@ -70,7 +73,13 @@ function App() {
   }
 
   const _handleKeyDown = event => {
-
+    if (!started) {
+      setStarted(true)
+      ReactGA.event({
+        category: 'User-Action',
+        action: 'Widget Started'
+      });
+    }
     if (!fiveRunning) {
       setFiveRunning(true)
       fiveInterval = setInterval(() => {
@@ -83,7 +92,11 @@ function App() {
           }
           if (t - 1 === 0) {
             clearEverything()
-
+            
+            ReactGA.event({
+              category: 'User-Action',
+              action: 'Session Ended'
+            });
             console.log('You Did It')
           }
           return t - 1
@@ -105,8 +118,10 @@ function App() {
 
             if (timer - 1 === -1) {
               const firstWord = txtInput.current.value.indexOf(' ')
-              setHeader('Word Deleted')
-              setBody('Keep Typing!')
+              ReactGA.event({
+                category: 'User-Action',
+                action: 'Back Space Hit'
+              });
               setShowToast(true)
               setTxt(txt => txtInput.current.value.slice(firstWord + 1, txtInput.current.value.length))
 
@@ -140,6 +155,12 @@ function App() {
     setHeader('Your Text Copied')
     setBody('Good Job meeting your word goal!')
     setShowToast(true)
+
+    ReactGA.event({
+      category: 'User-Action',
+      action: 'Text Copied (Words)',
+      value: savedTxt.trim().split(/\s+/).length
+    });
   }
 
   function _download() {
@@ -154,6 +175,12 @@ function App() {
     element.click();
 
     document.body.removeChild(element);
+
+    ReactGA.event({
+      category: 'User-Action',
+      action: 'Text Downloaded (Words)',
+      value: savedTxt.trim().split(/\s+/).length
+    });
   }
 
   const AlwaysScrollToBottom = () => {
@@ -268,7 +295,6 @@ function App() {
         </Toast>
       </ToastContainer>
 
-      <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="tylerthecc" data-description="Support me on Buy me a coffee!" data-message="Love this free tool? Share some love" data-color="#ff813f" data-position="Right" data-x_margin="18" data-y_margin="18"></script>
 
     </Container>
 
